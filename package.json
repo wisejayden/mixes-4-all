@@ -1,0 +1,22 @@
+{
+  "name": "react-express-starter",
+  "version": "1.0.0",
+  "description": "Boilerplate for React and Express",
+  "main": "server.js",
+  "scripts": {
+      "client-install": "cd client && npm install",
+      "start": "server.js",
+      "server": "nodemon server.js",
+      "client": " npm start --prefix client",
+      "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Jayden Wise",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^3.6.0",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}
