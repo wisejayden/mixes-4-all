@@ -15,21 +15,34 @@ const RegisterBox = (props) => {
             }
             {props.loginTrue &&
                 <div>
-                <p>Email Address</p>
-                <input  value={props.emailInput} />
-                <p>Password</p>
-                <input />
+                    {props.errorMessage &&
+                        <p style={{color: "red"}}>Please enter all details</p>
+                    }
+                    <p>Email Address</p>
+                    <input type="password" name="email" onChange={props.findFieldValue} value={props.emailInput} />
+                    <p>Password</p>
+                    <input type="password" name="password" onChange={props.findFieldValue} value={props.passwordInput} />
+                    <button onClick={props.submit} name="login-submit">Login</button>
                 </div>
             }
             {props.registerTrue &&
                 <div>
-                <p>Welcome!</p>
-                <p>Email address</p>
-                <input onChange={e => this.setState(e.target.value)} value={props.emailInput} />
-                <p>Password</p>
-                <input />
-                <p>Enter password again</p>
-                <input />
+                    <p>Welcome!</p>
+                    {props.errorMessage &&
+                        <p style={{color: "red"}}>Please enter all details</p>
+                    }
+                    {props.passwordNotMatching &&
+                        <p style={{color: "red"}}>Your passwords do not match!</p>
+                    }
+
+                    <p>Email address</p>
+
+                    <input name="email" onChange={props.findFieldValue} value={props.emailInput} />
+                    <p>Password</p>
+                    <input type="password" name="password" onChange={props.findFieldValue} value={props.passwordInput} />
+                    <p>Confirm Pasword</p>
+                    <input type="password" name="confirm-password" onChange={props.findFieldValue} value={props.confirmPasswordInput} />
+                    <button onClick={props.submit} name="register-submit">Register</button>
                 </div>
             }
         </div>
