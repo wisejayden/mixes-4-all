@@ -21,7 +21,11 @@ const checkPassword = middleware.checkPassword;
 //Database queries
 const newUser = userQueries.newUser;
 const checkLogin = userQueries.checkLogin;
-
+// const createUserTable = userQueries.createUserTable;
+// const insertMix = userQueries.insertMix;
+// const getAllUserInfo = userQueries.getAllUserInfo;
+const addNewMix = userQueries.addNewMix;
+const getUserMixes = userQueries.getUserMixes;
 
 app.use(compression());
 app.use(express.static(__dirname + '/public'));
@@ -50,6 +54,17 @@ app.get('/welcome', (req, res) => {
         res.sendFile(__dirname + '/index.html');
     }
 });
+
+app.get('/getusermixes', (req, res) => {
+    getUserMixes(req.session.user.id)
+    .then(resp => {
+        // const results = resp.rows[0]
+        res.json({
+            results: resp.rows
+        })
+    })
+})
+
 
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
@@ -114,6 +129,24 @@ app.post('/register', (req, res) => {
             console.log("hashPassword Catch", err);
         })
 });
+
+app.post('/upload', (req, res) => {
+    const { upload, title, playlist } = req.body;
+    console.log("playlist", playlist);
+    console.log("title", title);
+
+    addNewMix(req.session.user.id, upload)
+    .then(resp => {
+        res.json({
+            success: true
+        })
+    })
+    .catch(err => {
+        console.log("addnewMix catch", err);
+    })
+})
+
+
 
 app.get('*', function(req, res) {
     if(!req.session.user) {

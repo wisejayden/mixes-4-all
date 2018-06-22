@@ -6,6 +6,15 @@ CREATE TABLE users (
     hash_pass VARCHAR(300) not null
 );
 
+DROP TABLE IF EXISTS user_mixes;
+
+CREATE TABLE user_mixes (
+    id SERIAL primary key,
+    user_id VARCHAR(100) not null,
+    upload VARCHAR(8000) not null,
+    title VARCHAR(300),
+    playlist VARCHAR(300)
+);
 -- CREATE TABLE user_profiles (
 --     id SERIAL primary key,
 --     user_id INTEGER not null,

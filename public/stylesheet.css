@@ -1,31 +1,136 @@
 /* To Seperate into components, webpack not working as expected... */
 
 
-                    /* APP */
+                    /* WELCOME */
 
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    overflow-x: hidden;
+
+}
 .App {
   text-align: center;
+}
+button {
+    padding: 12px 24px;
+    font-size: 1em;
+    color: black;
+    border: 1px solid black;
+    background: none;
+    cursor: pointer;
+
+}
+button:focus {outline:0;}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
 
                     /* HEADER */
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 100px;
   padding: 20px;
   color: white;
+  margin-bottom: 50px;
 }
 .App-title {
   font-size: 1.5em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20px;
 }
 
 
 /* RegisterBox */
 
 #RegisterBox {
-    width: 30vw;
-    height: 30vh;
+    width: 40vw;
+    height: 50vh;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    border: solid black 1px;
+    top: 30vh;
+    color: white;
+    background-color:rgb(28,41,44, 0.3);
+    /* background-color: #1c1918; */
+
+}
+
+#welcome-message {
+    margin-top: 70px;
+    text-align: center;
+    border: 1px solid white;
+    width: 70px;
+    height: 20px;
+}
+.login-register-button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+}
+
+.login-form {
+    margin-top: 50px;
+}
+/* RegisterButton */
+#register-button {
+    position: absolute;
+    left:0;
+
+}
+
+/* LoginButton */
+#login-button {
+    position: absolute;
+    right: 0;
+
+}
+
+/* UploadMix */
+#upload-add {
+    width: 50px;
+    position: absolute;
+    left: 15px;
+}
+
+/* UploaderModal */
+#UploaderModal {
+    width: 30vw;
+    color: white;
+    position: relative;
+    top: -26px;
+    left: 0;
+    text-align: left;
+    font-size: 12px;
+}
+#UploaderModal p {
+    margin-bottom: 2px;
+}
+
+#add-mix-button {
+    color: white;
+    border: white solid 1px;
+    position: absolute;
+    left: 165px;
+    top: 50px;
+}
+#add-mix-button:hover {
+    color: black;
+    background-color: white;
+}
+
+
+
+/* App */
+.user-mixes-container {
+    display: flex;
+    overflow-x: scroll;
+
 }

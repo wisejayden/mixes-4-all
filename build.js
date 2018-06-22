@@ -33,6 +33,10 @@ const conf = {
                     presets: [['es2015'], ['react']],
                     plugins: ['transform-async-to-generator']
                 }
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
             }
         ]
     }

@@ -15,7 +15,9 @@ export default class Welcome extends Component {
             passwordInput: '',
             confirmPasswordInput: '',
             errorMessage: false,
-            passwordNotMatching: false
+            passwordNotMatching: false,
+            noMatchingEmail: false,
+            incorrectPassword: false
         };
         this.loginOrRegister = this.loginOrRegister.bind(this);
         this.findFieldValue = this.findFieldValue.bind(this);
@@ -59,7 +61,9 @@ export default class Welcome extends Component {
     submit(e) {
         this.setState({
             errorMessage: false,
-            passwordNotMatching: false
+            passwordNotMatching: false,
+            incorrectPassword: false,
+            noMatchingEmail: false
         })
         console.log(e.target.name);
         if(!this.state.emailInput || !this.state.passwordInput) {
@@ -99,6 +103,21 @@ export default class Welcome extends Component {
             console.log("loginSubmission client", res);
             if(res.data.success) {
                 location.replace('/');
+            } else {
+                console.log("else, log data", res.data);
+                if(res.data.reason === 'No matching email') {
+                    console.log("no matching email");
+                    this.setState({
+                        noMatchingEmail: true
+                    });
+                    return;
+                }
+                if(res.data.reason === 'Incorrect Password') {
+                    console.log("Incorrect password");
+                    this.setState({
+                        incorrectPassword: true
+                    });
+                }
             }
         })
     }
@@ -111,14 +130,21 @@ export default class Welcome extends Component {
         .then(res => {
             console.log("registerSubmission client", res);
             if(res.data.success) {
+                console.log("success");
                 location.replace('/');
             }
         })
     }
   render() {
+
     return (
             <div className="App">
-                <RegisterBox loginOrRegister={this.loginOrRegister} registerTrue={this.state.registerTrue} loginTrue={this.state.loginTrue} emailInput={this.state.emailInput} passwordInput={this.state.passwordInput} confirmPasswordInput={this.state.confirmPasswordInput} findFieldValue={this.findFieldValue} submit={this.submit} errorMessage={this.state.errorMessage} passwordNotMatching={this.state.passwordNotMatching}/>
+            <video autoPlay muted loop id="myVideo">
+                <source src="/video/origins.mp4" type="video/mp4"/>
+            </video>
+
+
+                <RegisterBox loginOrRegister={this.loginOrRegister} registerTrue={this.state.registerTrue} loginTrue={this.state.loginTrue} emailInput={this.state.emailInput} passwordInput={this.state.passwordInput} confirmPasswordInput={this.state.confirmPasswordInput} findFieldValue={this.findFieldValue} submit={this.submit} errorMessage={this.state.errorMessage} passwordNotMatching={this.state.passwordNotMatching} noMatchingEmail={this.state.noMatchingEmail} incorrectPassword={this.state.incorrectPassword }/>
             </div>
     )
   }
