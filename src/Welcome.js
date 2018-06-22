@@ -10,7 +10,7 @@ export default class Welcome extends Component {
         super(props);
         this.state= {
             registerTrue: false,
-            loginTrue: false,
+            loginTrue: true,
             emailInput: '',
             passwordInput: '',
             confirmPasswordInput: '',
